@@ -29,7 +29,6 @@ class Command(BaseCommand):
             time=timezone.make_aware(timezone.datetime(2025, 1, 1, 0, 0, 0)),  # Используйте timezone.make_aware
             action='Покушание',
             pleasant=True,
-            reward='Покушал и кайфуешь',
             frequency='once_a_day',
             estimated_time='00:02:00',
             is_public=True)
