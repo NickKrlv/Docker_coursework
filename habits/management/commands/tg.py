@@ -10,4 +10,4 @@ class Command(BaseCommand):
         habits = Habit.objects.filter(is_public=True)
 
         for habit in habits:
-            bot.send_message(f"Вам следует совершить привычки: {habit.action} в {habit.time}")
+            bot.send_message(f"Вам следует совершить привычку: {habit.action} в {habit.time}")
