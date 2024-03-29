@@ -26,7 +26,7 @@ class Command(BaseCommand):
         habit_1 = Habit.objects.create(
             user=user1,
             place='Дом',
-            time=timezone.make_aware(timezone.datetime(2025, 1, 1, 0, 0, 0)),  # Используйте timezone.make_aware
+            time=timezone.make_aware(timezone.datetime(2025, 1, 1, 0, 0, 0)),
             action='Покушание',
             pleasant=True,
             frequency='once_a_day',
@@ -37,7 +37,7 @@ class Command(BaseCommand):
         habit_2 = Habit.objects.create(
             user=user1,
             place='Магазин',
-            time=timezone.make_aware(timezone.datetime(2025, 1, 1, 0, 0, 0)),  # Используйте timezone.make_aware
+            time=timezone.make_aware(timezone.datetime(2025, 1, 1, 0, 0, 0)),
             action='Покупка продуктов',
             pleasant=False,
             frequency='once_a_week',
