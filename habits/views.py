@@ -19,7 +19,7 @@ class HabitViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         if serializer.is_valid():
-            serializer.save(owner=self.request.user)
+            serializer.save(user=self.request.user)
         else:
             raise ValueError(serializer.errors)
 
