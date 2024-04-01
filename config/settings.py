@@ -162,6 +162,12 @@ CELERY_TIMEZONE = TIME_ZONE  # Часовой пояс для работы Celer
 CELERY_TASK_TRACK_STARTED = True  # Флаг отслеживания выполнения задач
 CELERY_TASK_TIME_LIMIT = 30 * 60  # Максимальное время на выполнение задачи
 
+CELERY_BEAT_SCHEDULE = {
+    'task-name': {
+        'task': 'habits.tasks.notify',  # Путь к задаче
+        'schedule': timedelta(seconds=10),  # Расписание выполнения задачи (например, каждые 10 минут)
+    },
+}
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
@@ -173,4 +179,5 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOW_ALL_ORIGINS = False
 
-TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_TOKEN')
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+TELEGRAM_CHAT_ID = os.getenv('CHAT_ID')

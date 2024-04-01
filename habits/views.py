@@ -1,5 +1,5 @@
 from django.db.models import Q
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated
 from habits.models import Habit
 from habits.pagination import MyPagination
@@ -35,3 +35,11 @@ class HabitViewSet(viewsets.ModelViewSet):
         elif self.action == "destroy":
             self.permission_classes = [IsAuthenticated, IsOwner | IsStaff]
         return super().get_permissions()
+
+
+class PublicHabitListAPIView(generics.ListAPIView):
+    serializer_class = HabitSerializer
+    permission_classes = [IsAuthenticated, ]
+
+    def get_queryset(self):
+        return Habit.objects.filter(is_public=True)
