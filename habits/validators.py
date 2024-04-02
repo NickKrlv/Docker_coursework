@@ -40,10 +40,7 @@ class PleasantHabitValidator:
         self.field_linked_habit = linked_habit
 
     def __call__(self, value):
-        pleasant = dict(value).get(self.field_pleasant)
-        reward = dict(value).get(self.field_reward)
-        linked_habit = dict(value).get(self.field_linked_habit)
-        if pleasant and (reward != '' or linked_habit is not None):
+        if value.get(self.field_pleasant) and value.get(self.field_reward) or value.get(self.field_linked_habit):
             raise ValidationError('У приятной привычки не может быть вознаграждения или связанной привычки')
 
 
@@ -57,3 +54,23 @@ class LinkedHabitValidator:
         linked_habit = value.get(self.field_linked_habit)
         if linked_habit and not linked_habit.pleasant:
             raise ValidationError(_('Связанная привычка должна быть приятной привычкой.'))
+
+    # def validate(self, data):
+    #     linked_habit = data.get('linked_habit')
+    #     reward = data.get('reward')
+    #     pleasant = data.get('pleasant')
+    #     estimated_time = data.get('estimated_time')
+    #
+    #     # Исключить одновременный выбор связанной привычки и указания вознаграждения
+    #     if linked_habit and reward:
+    #         raise serializers.ValidationError(
+    #             _('Необходимо выбрать либо связанную привычку, либо указать вознаграждение, но не одновременно.'))
+    #
+    #     # Время выполнения должно быть не больше 120 секунд
+    #     if estimated_time and timedelta(hours=estimated_time.hour, minutes=estimated_time.minute,
+    #                                     seconds=estimated_time.second).total_seconds() > 120:
+    #         raise serializers.ValidationError(_('Время выполнения не может превышать 120 секунд.'))
+    #
+    #     # Связанные привычки могут попадать только привычки с признаком приятной привычки
+    #     if linked_habit and not linked_habit.pleasant:
+    #         raise serializers.ValidationError(_('Связанная привычка должна быть приятной привычкой.'))

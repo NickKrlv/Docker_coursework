@@ -20,7 +20,7 @@ def notify():
         if current_time >= time_from:
             while time_till >= current_time:
                 message = (f'Напоминание: я буду {habit.action} в {current_time.astimezone(MSK).isoformat()} в '
-                           f'{habit.name}. На выполнение {habit.estimated_time} секунд.')
+                           f'{habit.place}. На выполнение {habit.estimated_time} секунд.')
                 messages.append(message)
                 current_time += delta
     for msg in messages:
