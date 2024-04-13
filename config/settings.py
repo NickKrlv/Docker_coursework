@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('ENGINE'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv('NAME'),
         'USER': os.getenv('USER'),
         'PASSWORD': os.getenv('PASSWORD'),
-        'HOST': os.getenv('HOST'),
+        'HOST': 'db',
         'PORT': os.getenv('PORT'),
     }
 }
@@ -156,8 +156,8 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
 }
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_BROKER_URL = 'redis://redis:6379:0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_TIMEZONE = TIME_ZONE  # Часовой пояс для работы Celery
 CELERY_TASK_TRACK_STARTED = True  # Флаг отслеживания выполнения задач
 CELERY_TASK_TIME_LIMIT = 30 * 60  # Максимальное время на выполнение задачи
